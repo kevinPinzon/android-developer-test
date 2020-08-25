@@ -1,0 +1,2 @@
+rootProject.name='AdministradorEstacionamiento'
+include ':app'
