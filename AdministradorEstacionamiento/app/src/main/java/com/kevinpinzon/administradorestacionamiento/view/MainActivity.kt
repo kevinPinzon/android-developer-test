@@ -1,9 +1,10 @@
-package com.kevinpinzon.administradorestacionamiento.ui
+package com.kevinpinzon.administradorestacionamiento.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayoutMediator
 import com.kevinpinzon.administradorestacionamiento.R
+import com.kevinpinzon.administradorestacionamiento.view.adapters.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

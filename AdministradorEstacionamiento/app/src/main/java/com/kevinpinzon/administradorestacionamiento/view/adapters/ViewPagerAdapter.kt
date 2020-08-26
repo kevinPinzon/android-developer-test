@@ -1,8 +1,11 @@
-package com.kevinpinzon.administradorestacionamiento.ui
+package com.kevinpinzon.administradorestacionamiento.view.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.kevinpinzon.administradorestacionamiento.view.fragments.CarsFragment
+import com.kevinpinzon.administradorestacionamiento.view.fragments.HomeFramgment
+import com.kevinpinzon.administradorestacionamiento.view.fragments.RecordFragment
 
 class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
 
@@ -21,7 +24,7 @@ class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa) {
                 HomeFramgment()
             }
             2    -> {
-                HomeFramgment()
+                CarsFragment()
             }
             else -> HomeFramgment()
         }
