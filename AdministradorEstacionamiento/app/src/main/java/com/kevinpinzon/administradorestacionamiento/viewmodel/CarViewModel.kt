@@ -6,19 +6,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.kevinpinzon.administradorestacionamiento.data.AppDatabase
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
-import com.kevinpinzon.administradorestacionamiento.domain.Repo
+import com.kevinpinzon.administradorestacionamiento.domain.CarRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CarViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: Repo
+    private val repository: CarRepo
 
     val allCars: LiveData<List<Car>>
 
     init {
         val carsDao = AppDatabase.getDatabase(application).carDAO()
-        repository = Repo(carsDao)
+        repository = CarRepo(carsDao)
         allCars = repository.allcars
     }
 

@@ -14,7 +14,7 @@ data class Car (
     var placa : String = "",
 
     @ColumnInfo(name = "type")
-    var type : Int = 0,
+    var type : String = "",
 
     @ColumnInfo(name = "totalToPay")
     var totalToPay : Float = 0F

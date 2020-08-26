@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
+import com.kevinpinzon.administradorestacionamiento.data.model.TypeCar
 import com.kevinpinzon.administradorestacionamiento.domain.CarDAO
+import com.kevinpinzon.administradorestacionamiento.domain.TypeCarDAO
 
-@Database(entities = [Car::class],version = 1)
+@Database(entities = [Car::class, TypeCar::class],version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun carDAO(): CarDAO
+    abstract fun typeCarDAO(): TypeCarDAO
 
 
     companion object{
@@ -23,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         AppDatabase::class.java,
-                        "tabla_cars"
+                        "app_database"
                     ).build()
                 }
                 return instance

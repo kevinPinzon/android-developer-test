@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:padding="4dp">
         <ImageView
@@ -48,9 +48,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_toEndOf="@+id/textView_Titleplaca"
-            android:inputType="text"
-            android:text=""/>
+            android:layout_toEndOf="@+id/textView_Titleplaca" />
 
     </RelativeLayout>
 
@@ -78,20 +76,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/textView_type">
 
-            <RadioButton
-                android:id="@+id/rb_personal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="true"
-                android:text="Oficial"/>
 
-            <RadioButton
-                android:id="@+id/rb_redes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/colorPrimary"
-                android:text="Residente" />
 
         </RadioGroup>
 
@@ -119,7 +104,8 @@
         android:layout_marginEnd="100dp"
         android:layout_marginTop="12dp"
         android:text="Cancelar"
-        android:textColor="@color/colorPrimary"/>
+        android:clickable="true"
+        android:textColor="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/textView_save"
@@ -129,7 +115,8 @@
         android:layout_marginTop="12dp"
         android:layout_alignParentEnd="true"
         android:text="Guardar"
-        android:textColor="@color/colorPrimary" />
+        android:clickable="true"
+        android:textColor="@color/colorAccent" />
 
     </RelativeLayout>
 
