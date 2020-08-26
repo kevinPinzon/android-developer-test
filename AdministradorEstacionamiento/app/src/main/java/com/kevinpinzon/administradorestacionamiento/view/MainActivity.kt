@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     2 -> {
                         tab.text = "Vehiculos"
-                        tab.setIcon(R.drawable.ic_add_black_24dp)
+                        tab.setIcon(R.drawable.ic_automotive)
                     }
                 }
             })

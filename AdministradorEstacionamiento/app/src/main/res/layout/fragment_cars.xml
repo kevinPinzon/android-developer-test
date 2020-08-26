@@ -23,7 +23,7 @@
             android:id="@+id/btn_addCar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_save_black_24dp"
+            android:src="@drawable/ic_add_black_24dp"
             app:layout_constraintBottom_toBottomOf="@+id/car_recyclerView"
             app:layout_constraintEnd_toEndOf="@+id/car_recyclerView"
             android:tint="#fff"
