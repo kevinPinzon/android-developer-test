@@ -1,14 +1,12 @@
 package com.kevinpinzon.administradorestacionamiento.view.fragments
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +35,8 @@ class CarsFragment : Fragment() {
 
     private fun addCar(placa:String, type:String, dialog:AlertDialog) {
         carViewModel.insert(Car(placa, type,0F))
+        Toast.makeText(dialog.context,
+            "Vehiculo guardado exitosamente", Toast.LENGTH_SHORT).show()
         dialog.cancel()
     }
 
@@ -76,17 +76,17 @@ class CarsFragment : Fragment() {
 
             val rg = dialogView.findViewById<RadioGroup>(R.id.radiog_types)
 
-            saveTextV.setOnClickListener {
+                saveTextV.setOnClickListener {
 
-                val rbSelected = dialogView.findViewById<RadioButton>(rg.checkedRadioButtonId)
+                    val rbSelected = dialogView.findViewById<RadioButton>(rg.checkedRadioButtonId)
 
-                if( placaEditText.text.length > 0){
-                    addCar(placaEditText.text.toString(), rbSelected.text.toString(), dialogCustom)
-                    placaEditText.text.clear()
-                }else{
-                    placaEditText.error = "Debe agregar numero de placa"
+                    if( placaEditText.text.length > 0){
+                        addCar(placaEditText.text.toString(), rbSelected.text.toString(), dialogCustom)
+                        placaEditText.text.clear()
+                    }else{
+                        placaEditText.error = "Debe agregar numero de placa"
+                    }
                 }
-            }
 
             cancelTextV.setOnClickListener {
 
@@ -116,7 +116,7 @@ class CarsFragment : Fragment() {
 
                 if (types.isEmpty() ){
                     typeCarViewModel.insert(TypeCar(0,"oficial"))
-                    typeCarViewModel.insert(TypeCar(1,"residente"))
+                    typeCarViewModel.insert(TypeCar(0,"residente"))
                 }
 
                 val rg = dialogView.findViewById<RadioGroup>(R.id.radiog_types)

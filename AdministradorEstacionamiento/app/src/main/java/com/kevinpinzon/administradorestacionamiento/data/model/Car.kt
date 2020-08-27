@@ -16,7 +16,7 @@ data class Car (
     @ColumnInfo(name = "type")
     var type : String = "",
 
-    @ColumnInfo(name = "totalToPay")
-    var totalToPay : Float = 0F
+    @ColumnInfo(name = "totalTime")
+    var totalTime : Float = 0F
 
 )

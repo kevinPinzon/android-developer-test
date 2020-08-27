@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="4dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_margin="2dp"
+            android:tint="#fff"
+            android:src="@drawable/ic_parking_barrier" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="Registrar salida"
+        android:textColor="#000"
+        android:layout_marginTop="12dp"
+        android:padding="4dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:id="@+id/textView_Titleplaca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="center_vertical"
+            android:text="Placa:" />
+
+
+        <Spinner
+            android:id="@+id/spinner_placa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/textView_Titleplaca" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp">
+
+        <View
+            android:id="@+id/lineview"
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:layout_marginBottom="4dp"
+            android:background="#000"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/textView_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/textView_save"
+            android:layout_alignTop="@+id/lineview"
+            android:layout_marginEnd="100dp"
+            android:layout_marginTop="12dp"
+            android:text="Cancelar"
+            android:clickable="true"
+            android:textColor="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/textView_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/lineview"
+            android:layout_marginTop="12dp"
+            android:layout_alignParentEnd="true"
+            android:text="Guardar"
+            android:clickable="true"
+            android:textColor="@color/colorAccent" />
+
+    </RelativeLayout>
+
+</LinearLayout>
