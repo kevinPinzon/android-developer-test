@@ -11,11 +11,11 @@ interface RegisterDAO {
             " VALUES( :placa, :timeIn );")
     suspend fun registerIn(placa: String, timeIn: Long)
  */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun registerIn(register: Register)
 
     @Update
-    fun updateRegister(register: Register) : Int
+    suspend fun updateRegister(register: Register) : Int
 
     @Delete
     fun deleteRegister(register: Register) : Int
@@ -26,7 +26,7 @@ interface RegisterDAO {
     @Query("SELECT * FROM register")
     fun getAllRegister():LiveData<List<Register>>
 
-    @Query("SELECT DISTINCT placa, id FROM register WHERE"+
+    @Query("SELECT * FROM register WHERE"+
         " timeOut = 'N'")
     fun getAllPlacasIn():LiveData<List<Register>>
 

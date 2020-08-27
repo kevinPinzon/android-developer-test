@@ -28,13 +28,12 @@ class CarsFragment : Fragment() {
 
     //private lateinit var typesCarsG: List<TypeCar>
 
-
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
     }
 
     private fun addCar(placa:String, type:String, dialog:AlertDialog) {
-        carViewModel.insert(Car(placa, type,0F))
+        carViewModel.insert(Car(placa, type,0))
         Toast.makeText(dialog.context,
             "Vehiculo guardado exitosamente", Toast.LENGTH_SHORT).show()
         dialog.cancel()
@@ -105,6 +104,7 @@ class CarsFragment : Fragment() {
                     com.kevinpinzon.administradorestacionamiento.view.adapters.RecyclerView(
                         cars
                     )
+                println("TEST-cars:"+cars)
             }
         }
         carViewModel.allCars.observe(this, observer)
@@ -115,8 +115,8 @@ class CarsFragment : Fragment() {
             if (types != null) {
 
                 if (types.isEmpty() ){
-                    typeCarViewModel.insert(TypeCar(0,"oficial"))
-                    typeCarViewModel.insert(TypeCar(0,"residente"))
+                    typeCarViewModel.insert(TypeCar(1,"oficial"))
+                    typeCarViewModel.insert(TypeCar(2,"residente"))
                 }
 
                 val rg = dialogView.findViewById<RadioGroup>(R.id.radiog_types)

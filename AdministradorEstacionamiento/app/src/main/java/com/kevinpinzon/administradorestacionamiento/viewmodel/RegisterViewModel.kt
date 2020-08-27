@@ -28,4 +28,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     fun registerIn(register: Register) = viewModelScope.launch(Dispatchers.IO) {
         repository.registerIn(register)
     }
+
+    fun registerOut(register: Register) = viewModelScope.launch(Dispatchers.IO) {
+        repository.registerOut(register)
+    }
 }

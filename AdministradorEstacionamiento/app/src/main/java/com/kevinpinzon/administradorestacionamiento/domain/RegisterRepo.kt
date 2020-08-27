@@ -11,6 +11,10 @@ class RegisterRepo(private val registerDAO: RegisterDAO) {
         registerDAO.registerIn(register)
     }
 
+    suspend fun registerOut(register: Register) {
+        registerDAO.updateRegister(register)
+    }
+
     val allPlacasIn: LiveData<List<Register>> = registerDAO.getAllPlacasIn()
 
 }

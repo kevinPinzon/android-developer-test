@@ -25,4 +25,12 @@ class CarViewModel(application: Application) : AndroidViewModel(application) {
     fun insert(car: Car) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(car)
     }
+
+    fun updateTotalTime(placa: String, totalTime: Long) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateTotalTime(placa, totalTime)
+    }
+
+    fun getCarByPlaca(placa: String): LiveData<Car>  {
+        return repository.getCarByPlaca(placa)
+    }
 }

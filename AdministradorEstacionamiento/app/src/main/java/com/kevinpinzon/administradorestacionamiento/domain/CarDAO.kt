@@ -10,8 +10,11 @@ interface CarDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCar(car: Car)
 
+    @Query("UPDATE car SET totalTime = (totalTime + :totalTime) WHERE placa = :placa;")
+    suspend fun updateTotalTime(placa: String, totalTime: Long) : Int
+
     @Update
-    fun updateCar(car: Car) : Int
+    suspend fun updateCar(car: Car)
 
     @Delete
     fun deleteCar(car: Car) : Int
@@ -21,6 +24,9 @@ interface CarDAO {
 
     @Query("SELECT * FROM car")
     fun getAllCars():LiveData<List<Car>>
+
+    @Query("SELECT * FROM car WHERE placa == :placa LIMIT 1")
+    fun getCarByPlaca(placa: String) : LiveData<Car>
 
     @Query("SELECT * FROM car WHERE type == 'oficial'")
     fun getOficialCars():LiveData<List<Car>>

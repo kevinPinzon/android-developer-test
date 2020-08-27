@@ -1,5 +1,6 @@
 package com.kevinpinzon.administradorestacionamiento.data.model
 
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,6 +18,6 @@ data class Car (
     var type : String = "",
 
     @ColumnInfo(name = "totalTime")
-    var totalTime : Float = 0F
+    var totalTime : Long = 0
 
 )

@@ -22,6 +22,6 @@ data class Register (
     var timeOut : String?,
 
     @ColumnInfo(name = "totalToPay")
-    var totalToPay : Float? = 0F
+    var totalToPay : Double? = 0.0
 
 )
