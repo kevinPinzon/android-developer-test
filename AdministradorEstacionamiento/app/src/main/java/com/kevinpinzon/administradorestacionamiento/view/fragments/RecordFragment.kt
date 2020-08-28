@@ -1,7 +1,6 @@
 package com.kevinpinzon.administradorestacionamiento.view.fragments
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +16,6 @@ import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel
 import com.kevinpinzon.administradorestacionamiento.viewmodel.RegisterViewModel
-import kotlinx.android.synthetic.main.fragment_cars.*
 import kotlinx.android.synthetic.main.fragment_record.*
 import java.text.SimpleDateFormat
 import java.time.*
@@ -35,7 +33,6 @@ class RecordFragment : Fragment() {
     val registrosInGlobal: ArrayList<Register> = ArrayList()
     val carsInGlobal: ArrayList<Car> = ArrayList()
     var registroToOut = Register(0,"","","")
-    var currentCar = Car("","", 0)
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -173,34 +170,34 @@ class RecordFragment : Fragment() {
         println("TEST- totalTime: "+totalTime)
         println("TEST- register.placa: "+register.placa)
 
+        var currentCar = Car("","", 0)
+        for (itemCar in carsInGlobal) {
+            if(itemCar.placa == register.placa){
+                currentCar = itemCar
+            }
+        }
+
+        dialog.cancel()
+        var builder = AlertDialog.Builder(context)
+        builder.setTitle("Registro de salida se ha guardado exitosamente")
+
+        println("TEST- currentCar: " + currentCar)
+
+        if(currentCar.type.equals("residente")){
+            builder.setMessage("Se ha actualizado el tiempo acumulado de la estancia total del vehiculo residente.")
+        }else if(currentCar.type.equals("oficial")){
+            builder.setMessage("Se ha guardado la estancia del vehiculo oficial.")
+        }else{
+            builder.setMessage("Importe a pagar:" + calculateTotalToPayNoResi(totalTime))
+        }
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            println("TEST- finish register out")
+        }
+
+        builder.show()
+
         carViewModel.updateTotalTime(register.placa, totalTime)
-
-        carViewModel.getCarByPlaca(register.placa).observe(this, Observer{
-
-            dialog.cancel()
-            var builder = AlertDialog.Builder(context)
-            builder.setTitle("Registro de salida se ha guardado exitosamente")
-
-            if (it != null) {
-                currentCar = it
-                println("TEST- currentCar: " + currentCar)
-
-                if(currentCar.type.equals("residente")){
-                    builder.setMessage("Se ha actualizado el tiempo acumulado de la estancia total del vehiculo residente.")
-                }else if(currentCar.type.equals("oficial")){
-                    builder.setMessage("Se ha guardado la estancia del vehiculo oficial.")
-                }
-
-            }else{
-                builder.setMessage("Importe a pagar:" + calculateTotalToPayNoResi(totalTime))
-            }
-
-            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                println("TEST- finish register out")
-            }
-            builder.show()
-
-        })
 
     }
 

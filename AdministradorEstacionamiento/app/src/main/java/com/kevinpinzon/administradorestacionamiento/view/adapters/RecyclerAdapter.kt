@@ -23,8 +23,8 @@ class RecyclerView(val cars: List<Car>)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.itemView.textvPlaca.text = cars[position].placa.toString()
-        holder.itemView.textvType.text = cars[position].type.toString()
+        holder.itemView.textvPlaca.text = "Placa: "+cars[position].placa.toString()
+        holder.itemView.textvType.text  = "Tiempo Acumulado:" + cars[position].totalTime.toString() + " minutos"
     }
 
     override fun getItemCount(): Int {

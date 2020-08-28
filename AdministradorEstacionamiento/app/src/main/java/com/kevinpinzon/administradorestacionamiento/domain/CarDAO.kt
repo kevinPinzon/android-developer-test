@@ -33,4 +33,7 @@ interface CarDAO {
 
     @Query("SELECT * FROM car WHERE type == 'oficial'")
     fun getOficialCars():LiveData<List<Car>>
+
+    @Query("SELECT * FROM car WHERE type == 'residente'")
+    fun getOResidentCars():LiveData<List<Car>>
 }

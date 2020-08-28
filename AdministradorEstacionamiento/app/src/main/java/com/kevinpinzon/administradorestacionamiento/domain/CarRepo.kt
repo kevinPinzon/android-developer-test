@@ -7,6 +7,10 @@ class CarRepo(private val carDAO: CarDAO) {
 
     val allcars: LiveData<List<Car>> = carDAO.getAllCars()
 
+    val allOficialCars: LiveData<List<Car>> = carDAO.getOficialCars()
+
+    val allResidentCars: LiveData<List<Car>> = carDAO.getOResidentCars()
+
     fun getCarByPlaca(placa: String): LiveData<Car> {
         return carDAO.getCarByPlaca(placa)
     }
@@ -22,4 +26,5 @@ class CarRepo(private val carDAO: CarDAO) {
     suspend fun startMonthToResident() {
         carDAO.startMonthToResident()
     }
+
 }

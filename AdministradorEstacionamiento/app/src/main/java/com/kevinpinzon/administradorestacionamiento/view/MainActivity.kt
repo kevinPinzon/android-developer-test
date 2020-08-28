@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //actionbar
+        val actionbar = supportActionBar
+        //set actionbar title
+        actionbar!!.title = "Administrador de estacionamiento"
+
         pager.adapter = adapter
         val tabLayoutMediator = TabLayoutMediator(tab_layout, pager,
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
@@ -27,10 +33,6 @@ class MainActivity : AppCompatActivity() {
                         tab.setIcon(R.drawable.ic_parking_barrier)
                     }
                     1 -> {
-                        tab.text = "Reporte"
-                        tab.setIcon(R.drawable.ic_car)
-                    }
-                    2 -> {
                         tab.text = "Vehiculos"
                         tab.setIcon(R.drawable.ic_automotive)
                     }

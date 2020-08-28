@@ -15,11 +15,15 @@ class CarViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CarRepo
 
     val allCars: LiveData<List<Car>>
+    val allOficialCars: LiveData<List<Car>>
+    val allResidentCars: LiveData<List<Car>>
 
     init {
         val carsDao = AppDatabase.getDatabase(application).carDAO()
         repository = CarRepo(carsDao)
         allCars = repository.allcars
+        allOficialCars = repository.allOficialCars
+        allResidentCars = repository.allResidentCars
     }
 
     fun insert(car: Car) = viewModelScope.launch(Dispatchers.IO) {

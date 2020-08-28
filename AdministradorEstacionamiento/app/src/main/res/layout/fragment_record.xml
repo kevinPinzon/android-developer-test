@@ -8,14 +8,6 @@
     android:layout_height="fill_parent"
     tools:context=".view.fragments.RecordFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="4dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_automotive"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,9 +16,56 @@
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_registros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            card_view:cardCornerRadius="8dp"
+            card_view:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/ic_assignment_black_24dp" />
+
+                <TextView
+                    android:id="@+id/textv_registros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="4dp"
+                    android:maxWidth="80dp"
+                    android:text="113"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="4dp"
+                    android:maxWidth="80dp"
+                    android:text="Registros registrados"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <Button
             android:id="@+id/btnStartMonth"
             android:layout_width="220dp"
+            android:layout_marginTop="12dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorAccent"
             android:text="Comenzar Mes"
@@ -39,6 +78,8 @@
             android:backgroundTint="@color/colorAccent"
             android:text="Pago de residentes"
             android:textColor="#fff" />
+
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -66,8 +107,8 @@
 
                     <ImageView
                         android:id="@+id/imagev_in"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/ic_arrow"
                         android:layout_gravity="center_horizontal"
                         android:tint="#008000"
@@ -107,8 +148,8 @@
                     <ImageView
                         android:id="@+id/imagev_out"
                         android:tint="#FF0000"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/ic_logout"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="4dp"/>
