@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kevinpinzon.administradorestacionamiento.R
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import kotlinx.android.synthetic.main.card_estancia.view.*
+import java.time.LocalDateTime
 
 class EstanciasRecyclerAdapter(val estancias: List<Register>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -45,6 +46,29 @@ class EstanciasRecyclerAdapter(val estancias: List<Register>)
 
     class ViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){
 
+    }
+
+    private fun strToDateTime(dateTimeStr: String): LocalDateTime {
+
+        var dateAndTimeIn = dateTimeStr.split(" ")
+
+        var dateInStr = dateAndTimeIn.get(0).split("/")
+        var timeInStr = dateAndTimeIn.get(1).split(":")
+
+        val year    = dateInStr[2].toInt()
+        val month   = dateInStr[1].toInt()
+        val day     = dateInStr[0].toInt()
+
+        val hour    = timeInStr[0].toInt()
+        val minute  = timeInStr[1].toInt()
+        val seconds = timeInStr[2].toInt()
+
+        val dateTime = LocalDateTime.of(year, month, day, hour, minute, seconds)
+
+        println("TEST-"+dateTimeStr)
+        println("TEST-"+dateTime)
+
+        return dateTime
     }
 
 

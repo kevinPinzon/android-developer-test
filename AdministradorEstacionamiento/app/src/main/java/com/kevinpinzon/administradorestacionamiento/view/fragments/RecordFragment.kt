@@ -278,15 +278,18 @@ class RecordFragment : Fragment() {
 
                 textv_registers.text = registrosIn.size.toString()
                 for (register in registrosIn) {
+
+                    if (register.timeOut == "N"){
+                        placas.add(register.placa)
+                        registrosInGlobal.add(register)
+                    }
                     println("TEST- register:"+register)
-                    placas.add(register.placa)
-                    registrosInGlobal.add(register)
                 }
             }
         }
 
-        registerViewModel.allRegisters.observe(this, observer)
         //registerViewModel.allPlacasIn.observe(this, observer)
+        registerViewModel.allRegisters.observe(this, observer)
     }
 
     private fun getCars() {
