@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.kevinpinzon.administradorestacionamiento.R
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.data.model.TypeCar
-import com.kevinpinzon.administradorestacionamiento.view.RegisterActivity
+import com.kevinpinzon.administradorestacionamiento.view.ListCarActivity
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel
 import com.kevinpinzon.administradorestacionamiento.viewmodel.RegisterViewModel
 import com.kevinpinzon.administradorestacionamiento.viewmodel.TypeCarViewModel
@@ -53,15 +53,13 @@ class HomeFramgment : Fragment() {
         addObserverCars()
 
         cardv_residentes.setOnClickListener{
-            val intent = Intent(context, RegisterActivity::class.java)
-            // To pass any data to next activity
+            val intent = Intent(context, ListCarActivity::class.java)
             intent.putExtra("title", "Residentes")
-            // start your next activity
             startActivity(intent)
         }
 
         cardv_oficiales.setOnClickListener{
-            val intent = Intent(context, RegisterActivity::class.java)
+            val intent = Intent(context, ListCarActivity::class.java)
             // To pass any data to next activity
             intent.putExtra("title", "Oficiales")
             // start your next activity

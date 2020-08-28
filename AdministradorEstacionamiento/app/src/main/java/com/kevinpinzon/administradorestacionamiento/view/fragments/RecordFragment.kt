@@ -1,6 +1,7 @@
 package com.kevinpinzon.administradorestacionamiento.view.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.Observer
 import com.kevinpinzon.administradorestacionamiento.R
+import com.kevinpinzon.administradorestacionamiento.RegisterActivity
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel
@@ -39,6 +41,7 @@ class RecordFragment : Fragment() {
 
         registerViewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
         carViewModel = ViewModelProviders.of(this).get(CarViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -55,6 +58,11 @@ class RecordFragment : Fragment() {
 
         getRegisters()
         getCars()
+
+        cardview_registros.setOnClickListener{
+            val intent = Intent(context, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         var modelDialogIn = AlertDialog.Builder(context)
         val dialogViewIn = layoutInflater.inflate(R.layout.dialog_inregister, null)
@@ -263,15 +271,18 @@ class RecordFragment : Fragment() {
 
         var observer = Observer<List<Register>> { registrosIn ->
 
-            placas.clear()
-            registrosInGlobal.clear()
+            if (registrosIn != null) {
 
-            for (register in registrosIn) {
-                println("TEST- register:"+register)
-                placas.add(register.placa)
-                registrosInGlobal.add(register)
+                placas.clear()
+                registrosInGlobal.clear()
+
+                textv_registers.text = registrosIn.size.toString()
+                for (register in registrosIn) {
+                    println("TEST- register:"+register)
+                    placas.add(register.placa)
+                    registrosInGlobal.add(register)
+                }
             }
-
         }
 
         registerViewModel.allRegisters.observe(this, observer)

@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kevinpinzon.administradorestacionamiento.R
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel
-import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.recycler.*
 
-class RegisterActivity : AppCompatActivity() {
+class ListCarActivity : AppCompatActivity() {
 
     private lateinit var carViewModel: CarViewModel
     private var title: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.recycler)
 
         title = intent.getStringExtra("title")
 

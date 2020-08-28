@@ -40,13 +40,13 @@
                     android:src="@drawable/ic_assignment_black_24dp" />
 
                 <TextView
-                    android:id="@+id/textv_registros"
+                    android:id="@+id/textv_registers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="4dp"
                     android:maxWidth="80dp"
-                    android:text="113"
+                    android:text="0"
                     android:textAlignment="center" />
 
                 <TextView
@@ -55,7 +55,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="4dp"
                     android:maxWidth="80dp"
-                    android:text="Registros registrados"
+                    android:text="Estancias registrados"
                     android:textAlignment="center" />
 
             </LinearLayout>

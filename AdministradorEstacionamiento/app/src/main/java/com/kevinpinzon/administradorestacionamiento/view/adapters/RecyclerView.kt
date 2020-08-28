@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kevinpinzon.administradorestacionamiento.R
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
-import com.kevinpinzon.administradorestacionamiento.data.model.TypeCar
 import kotlinx.android.synthetic.main.card_car.view.*
 
 
@@ -23,7 +22,7 @@ class RecyclerView(val cars: List<Car>)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder.itemView.textvPlaca.text = "Placa: "+cars[position].placa.toString()
+        holder.itemView.textvPlaca.text = "Placa: "+cars[position].placa
         holder.itemView.textvType.text  = "Tiempo Acumulado:" + cars[position].totalTime.toString() + " minutos"
     }
 
