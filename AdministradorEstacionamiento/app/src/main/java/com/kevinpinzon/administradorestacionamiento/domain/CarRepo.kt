@@ -18,4 +18,8 @@ class CarRepo(private val carDAO: CarDAO) {
     suspend fun updateTotalTime(placa: String, totalTime: Long) {
         carDAO.updateTotalTime(placa, totalTime)
     }
+
+    suspend fun startMonthToResident() {
+        carDAO.startMonthToResident()
+    }
 }

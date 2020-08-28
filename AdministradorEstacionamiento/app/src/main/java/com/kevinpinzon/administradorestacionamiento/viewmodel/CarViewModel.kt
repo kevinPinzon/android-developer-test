@@ -30,6 +30,10 @@ class CarViewModel(application: Application) : AndroidViewModel(application) {
         repository.updateTotalTime(placa, totalTime)
     }
 
+    fun startMonthToResident() = viewModelScope.launch(Dispatchers.IO) {
+        repository.startMonthToResident()
+    }
+
     fun getCarByPlaca(placa: String): LiveData<Car>  {
         return repository.getCarByPlaca(placa)
     }

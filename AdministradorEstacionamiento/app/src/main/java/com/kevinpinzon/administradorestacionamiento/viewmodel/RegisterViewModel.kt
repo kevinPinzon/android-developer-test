@@ -32,4 +32,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     fun registerOut(register: Register) = viewModelScope.launch(Dispatchers.IO) {
         repository.registerOut(register)
     }
+
+    fun startMonth() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteAllRegisters()
+    }
 }

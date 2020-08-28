@@ -17,10 +17,10 @@ import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel
 import com.kevinpinzon.administradorestacionamiento.viewmodel.RegisterViewModel
+import kotlinx.android.synthetic.main.fragment_cars.*
 import kotlinx.android.synthetic.main.fragment_record.*
 import java.text.SimpleDateFormat
 import java.time.*
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -28,12 +28,14 @@ import java.util.*
  */
 class RecordFragment : Fragment() {
 
-    private lateinit var registerViewModel: RegisterViewModel
+    lateinit var registerViewModel: RegisterViewModel
     private lateinit var carViewModel: CarViewModel
 
-    private val registrosInGlobal: ArrayList<Register> = ArrayList()
-    private var registroToOut = Register(0,"","","")
-    private var currentCar = Car("","", 0)
+    val placas: ArrayList<String> = ArrayList()
+    val registrosInGlobal: ArrayList<Register> = ArrayList()
+    val carsInGlobal: ArrayList<Car> = ArrayList()
+    var registroToOut = Register(0,"","","")
+    var currentCar = Car("","", 0)
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -54,20 +56,8 @@ class RecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val placas: ArrayList<String> = ArrayList()
-
-        val observer = Observer<List<Register>> { registrosIn ->
-
-            placas.clear()
-            registrosInGlobal.clear()
-
-            for (register in registrosIn) {
-                println("TEST- register:"+register)
-                placas.add(register.placa)
-                registrosInGlobal.add(register)
-            }
-
-        }
+        getRegisters()
+        getCars()
 
         var modelDialogIn = AlertDialog.Builder(context)
         val dialogViewIn = layoutInflater.inflate(R.layout.dialog_inregister, null)
@@ -107,42 +97,66 @@ class RecordFragment : Fragment() {
 
         card_view_out.setOnClickListener {
 
-            val saveTextV = dialogViewOut.findViewById<TextView>(R.id.textView_save)
-            val cancelTextV = dialogViewOut.findViewById<TextView>(R.id.textView_cancel)
-            val placaSpinner = dialogViewOut.findViewById<Spinner>(R.id.spinner_placa)
+            if(registrosInGlobal.isEmpty()){
+                var builder = AlertDialog.Builder(context)
+                builder.setTitle("Error")
+                builder.setMessage("No hay ninguna entrada registrado.")
+                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                    println("TEST- finish register out")
+                }
+                builder.show()
+            }else{
+                val saveTextV = dialogViewOut.findViewById<TextView>(R.id.textView_save)
+                val cancelTextV = dialogViewOut.findViewById<TextView>(R.id.textView_cancel)
+                val placaSpinner = dialogViewOut.findViewById<Spinner>(R.id.spinner_placa)
 
-            registerViewModel.allRegisters.observe(this, observer)
-            //registerViewModel.allPlacasIn.observe(this, observer)
+                var adapter = ArrayAdapter(dialogOutRegister.context,
+                    android.R.layout.simple_spinner_item,placas)
 
-            var adapter = ArrayAdapter(dialogOutRegister.context,
-                android.R.layout.simple_spinner_item,placas)
+                placaSpinner.adapter = adapter
 
-            placaSpinner.adapter = adapter
+                placaSpinner.onItemSelectedListener = object :
+                    AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>,
+                                                view: View, position: Int, id: Long) {
+                        registroToOut = registrosInGlobal[position]
+                        println("TEST-"+registroToOut)
+                    }
 
-            placaSpinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>,
-                                            view: View, position: Int, id: Long) {
-                    registroToOut = registrosInGlobal[position]
-                    println("TEST-"+registroToOut)
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        // write code to perform some action
+                    }
                 }
 
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
+                cancelTextV.setOnClickListener {
+                    dialogOutRegister.cancel()
                 }
-            }
 
-            cancelTextV.setOnClickListener {
-                dialogOutRegister.cancel()
-            }
+                saveTextV.setOnClickListener {
+                    registerOut(registroToOut, dialogOutRegister)
+                }
 
-            saveTextV.setOnClickListener {
-                registerOut(registroToOut, dialogOutRegister)
+                dialogOutRegister.show()
             }
-
-            dialogOutRegister.show()
         }
 
+        btnStartMonth.setOnClickListener{
+            registerViewModel.startMonth()
+            carViewModel.startMonthToResident()
+
+            var builder = AlertDialog.Builder(context)
+            builder.setTitle("Se ha comenzado el mes correctamente")
+            builder.setMessage("Los registros han sido limpiados y el tiempo acumulado de los vehiculos de residentes es 0.")
+            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                println("TEST- finish start month")
+            }
+            builder.show()
+
+        }
+
+        btnResidentPays.setOnClickListener{
+
+        }
     }
 
     private fun registerOut(register:Register, dialog:AlertDialog) {
@@ -163,6 +177,7 @@ class RecordFragment : Fragment() {
 
         carViewModel.getCarByPlaca(register.placa).observe(this, Observer{
 
+            dialog.cancel()
             var builder = AlertDialog.Builder(context)
             builder.setTitle("Registro de salida se ha guardado exitosamente")
 
@@ -180,13 +195,13 @@ class RecordFragment : Fragment() {
                 builder.setMessage("Importe a pagar:" + calculateTotalToPayNoResi(totalTime))
             }
 
+            builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                println("TEST- finish register out")
+            }
             builder.show()
 
         })
 
-        Toast.makeText(dialog.context,
-            "Registro de salida se ha guardado exitosamente", Toast.LENGTH_SHORT).show()
-        dialog.cancel()
     }
 
     private fun registerIn(placa:String, dialog:AlertDialog) {
@@ -196,17 +211,23 @@ class RecordFragment : Fragment() {
 
         registerViewModel.registerIn(Register(0,placa, dateInString, "N"))
 
-        Toast.makeText(dialog.context,
-            "Registro de entrada se ha guardado exitosamente", Toast.LENGTH_SHORT).show()
         dialog.cancel()
+
+        var builder = AlertDialog.Builder(context)
+        builder.setTitle("Registro de entrada se ha guardado exitosamente")
+        builder.setMessage("Se ha guardado el registro del vehiculo.")
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            println("TEST- finish register out")
+        }
+        builder.show()
     }
 
-    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+    private fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
         val formatter = SimpleDateFormat(format, locale)
         return formatter.format(this)
     }
 
-    fun getCurrentDateTime(): Date {
+    private fun getCurrentDateTime(): Date {
         return Calendar.getInstance().time
     }
 
@@ -241,4 +262,36 @@ class RecordFragment : Fragment() {
         return totalTime * 0.5
     }
 
+    private fun getRegisters(){
+
+        var observer = Observer<List<Register>> { registrosIn ->
+
+            placas.clear()
+            registrosInGlobal.clear()
+
+            for (register in registrosIn) {
+                println("TEST- register:"+register)
+                placas.add(register.placa)
+                registrosInGlobal.add(register)
+            }
+
+        }
+
+        registerViewModel.allRegisters.observe(this, observer)
+        //registerViewModel.allPlacasIn.observe(this, observer)
+    }
+
+    private fun getCars() {
+        val observer = Observer<List<Car>> { cars ->
+            carsInGlobal.clear()
+
+            for (car in cars) {
+                println("TEST- cars:"+car)
+                carsInGlobal.add(car)
+            }
+
+        }
+        carViewModel.allCars.observe(this, observer)
+
+    }
 }

@@ -13,6 +13,9 @@ interface CarDAO {
     @Query("UPDATE car SET totalTime = (totalTime + :totalTime) WHERE placa = :placa;")
     suspend fun updateTotalTime(placa: String, totalTime: Long) : Int
 
+    @Query("UPDATE car SET totalTime = 0 WHERE type = 'residente';")
+    suspend fun startMonthToResident() : Int
+
     @Update
     suspend fun updateCar(car: Car)
 
