@@ -1,4 +1,4 @@
-package com.kevinpinzon.administradorestacionamiento.domain
+package com.kevinpinzon.administradorestacionamiento.data.DAO
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

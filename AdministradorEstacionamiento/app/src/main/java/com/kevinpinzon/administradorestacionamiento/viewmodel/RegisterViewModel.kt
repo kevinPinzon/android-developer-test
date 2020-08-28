@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.kevinpinzon.administradorestacionamiento.data.AppDatabase
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
-import com.kevinpinzon.administradorestacionamiento.domain.RegisterRepo
+import com.kevinpinzon.administradorestacionamiento.data.Repositories.RegisterRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -20,7 +20,10 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
     init {
         val registersDao = AppDatabase.getDatabase(application).registerDAO()
-        repository = RegisterRepo(registersDao)
+        repository =
+            RegisterRepo(
+                registersDao
+            )
         allRegisters = repository.allregister
         allPlacasIn = repository.allPlacasIn
     }

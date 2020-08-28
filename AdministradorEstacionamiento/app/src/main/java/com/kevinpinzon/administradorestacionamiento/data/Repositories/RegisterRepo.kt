@@ -1,7 +1,8 @@
-package com.kevinpinzon.administradorestacionamiento.domain
+package com.kevinpinzon.administradorestacionamiento.data.Repositories
 
 import androidx.lifecycle.LiveData
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
+import com.kevinpinzon.administradorestacionamiento.data.DAO.RegisterDAO
 
 class RegisterRepo(private val registerDAO: RegisterDAO) {
 

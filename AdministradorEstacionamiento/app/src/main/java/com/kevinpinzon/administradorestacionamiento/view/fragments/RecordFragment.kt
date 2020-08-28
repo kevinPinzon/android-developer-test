@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.Observer
 import com.kevinpinzon.administradorestacionamiento.R
-import com.kevinpinzon.administradorestacionamiento.RegisterActivity
+import com.kevinpinzon.administradorestacionamiento.view.RegisterActivity
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel

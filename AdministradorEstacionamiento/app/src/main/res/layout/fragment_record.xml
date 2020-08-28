@@ -55,7 +55,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="4dp"
                     android:maxWidth="80dp"
-                    android:text="Estancias registrados"
+                    android:text="Estancias registradas"
                     android:textAlignment="center" />
 
             </LinearLayout>

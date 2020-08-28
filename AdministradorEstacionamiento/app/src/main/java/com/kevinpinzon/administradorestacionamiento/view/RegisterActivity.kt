@@ -1,4 +1,4 @@
-package com.kevinpinzon.administradorestacionamiento
+package com.kevinpinzon.administradorestacionamiento.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kevinpinzon.administradorestacionamiento.R
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.viewmodel.RegisterViewModel
 import kotlinx.android.synthetic.main.recycler.*

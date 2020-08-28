@@ -1,7 +1,8 @@
-package com.kevinpinzon.administradorestacionamiento.domain
+package com.kevinpinzon.administradorestacionamiento.data.Repositories
 
 import androidx.lifecycle.LiveData
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
+import com.kevinpinzon.administradorestacionamiento.data.DAO.CarDAO
 
 class CarRepo(private val carDAO: CarDAO) {
 

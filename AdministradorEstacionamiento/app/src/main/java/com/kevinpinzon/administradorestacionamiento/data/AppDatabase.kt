@@ -7,9 +7,9 @@ import androidx.room.RoomDatabase
 import com.kevinpinzon.administradorestacionamiento.data.model.Car
 import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.data.model.TypeCar
-import com.kevinpinzon.administradorestacionamiento.domain.CarDAO
-import com.kevinpinzon.administradorestacionamiento.domain.RegisterDAO
-import com.kevinpinzon.administradorestacionamiento.domain.TypeCarDAO
+import com.kevinpinzon.administradorestacionamiento.data.DAO.CarDAO
+import com.kevinpinzon.administradorestacionamiento.data.DAO.RegisterDAO
+import com.kevinpinzon.administradorestacionamiento.data.DAO.TypeCarDAO
 
 @Database(entities = [Car::class, TypeCar::class, Register::class],version = 1)
 abstract class AppDatabase : RoomDatabase() {
