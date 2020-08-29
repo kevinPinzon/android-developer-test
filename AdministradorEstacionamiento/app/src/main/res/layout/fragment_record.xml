@@ -71,16 +71,6 @@
             android:text="Comenzar Mes"
             android:textColor="#fff" />
 
-        <Button
-            android:id="@+id/btnResidentPays"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Pago de residentes"
-            android:textColor="#fff" />
-
-
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

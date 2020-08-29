@@ -40,36 +40,8 @@ class EstanciasRecyclerAdapter(val estancias: List<Register>)
         return super.getItemId(position)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
-
     class ViewHolder(itemView:View): RecyclerView.ViewHolder(itemView){
 
     }
-
-    private fun strToDateTime(dateTimeStr: String): LocalDateTime {
-
-        var dateAndTimeIn = dateTimeStr.split(" ")
-
-        var dateInStr = dateAndTimeIn.get(0).split("/")
-        var timeInStr = dateAndTimeIn.get(1).split(":")
-
-        val year    = dateInStr[2].toInt()
-        val month   = dateInStr[1].toInt()
-        val day     = dateInStr[0].toInt()
-
-        val hour    = timeInStr[0].toInt()
-        val minute  = timeInStr[1].toInt()
-        val seconds = timeInStr[2].toInt()
-
-        val dateTime = LocalDateTime.of(year, month, day, hour, minute, seconds)
-
-        println("TEST-"+dateTimeStr)
-        println("TEST-"+dateTime)
-
-        return dateTime
-    }
-
 
 }

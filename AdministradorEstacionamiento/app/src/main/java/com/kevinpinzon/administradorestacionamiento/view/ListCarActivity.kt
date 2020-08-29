@@ -47,7 +47,6 @@ class ListCarActivity : AppCompatActivity() {
                     com.kevinpinzon.administradorestacionamiento.view.adapters.RecyclerView(
                         cars
                     )
-                println("TEST-cars:"+cars)
             }
         }
 

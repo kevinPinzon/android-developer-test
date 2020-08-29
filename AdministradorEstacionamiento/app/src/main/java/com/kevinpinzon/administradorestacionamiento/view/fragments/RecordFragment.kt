@@ -1,9 +1,11 @@
 package com.kevinpinzon.administradorestacionamiento.view.fragments
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,8 @@ import com.kevinpinzon.administradorestacionamiento.data.model.Register
 import com.kevinpinzon.administradorestacionamiento.viewmodel.CarViewModel
 import com.kevinpinzon.administradorestacionamiento.viewmodel.RegisterViewModel
 import kotlinx.android.synthetic.main.fragment_record.*
+import java.io.File
+import java.io.PrintWriter
 import java.text.SimpleDateFormat
 import java.time.*
 import java.util.*
@@ -107,7 +111,6 @@ class RecordFragment : Fragment() {
                 builder.setTitle("Error")
                 builder.setMessage("No hay ninguna entrada registrado.")
                 builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                    println("TEST- finish register out")
                 }
                 builder.show()
             }else{
@@ -125,11 +128,9 @@ class RecordFragment : Fragment() {
                     override fun onItemSelected(parent: AdapterView<*>,
                                                 view: View, position: Int, id: Long) {
                         registroToOut = registrosInGlobal[position]
-                        println("TEST-"+registroToOut)
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>) {
-                        // write code to perform some action
                     }
                 }
 
@@ -153,15 +154,11 @@ class RecordFragment : Fragment() {
             builder.setTitle("Se ha comenzado el mes correctamente")
             builder.setMessage("Los registros han sido limpiados y el tiempo acumulado de los vehiculos de residentes es 0.")
             builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                println("TEST- finish start month")
             }
             builder.show()
 
         }
 
-        btnResidentPays.setOnClickListener{
-
-        }
     }
 
     private fun registerOut(register:Register, dialog:AlertDialog) {
@@ -174,9 +171,6 @@ class RecordFragment : Fragment() {
         var totalTime: Long = calculateTime(dateTimeIn, dateTimeOut)
         registerViewModel.registerOut(Register(register.id,register.placa, register.timeIn, dateOutString, calculateTotalToPayNoResi(totalTime)))
 
-        println("TEST- total to pay: $"+calculateTotalToPayNoResi(totalTime))
-        println("TEST- totalTime: "+totalTime)
-        println("TEST- register.placa: "+register.placa)
 
         var currentCar = Car("","", 0)
         for (itemCar in carsInGlobal) {
@@ -189,7 +183,6 @@ class RecordFragment : Fragment() {
         var builder = AlertDialog.Builder(context)
         builder.setTitle("Registro de salida se ha guardado exitosamente")
 
-        println("TEST- currentCar: " + currentCar)
 
         if(currentCar.type.equals("residente")){
             builder.setMessage("Se ha actualizado el tiempo acumulado de la estancia total del vehiculo residente.")
@@ -200,7 +193,6 @@ class RecordFragment : Fragment() {
         }
 
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            println("TEST- finish register out")
         }
 
         builder.show()
@@ -222,7 +214,6 @@ class RecordFragment : Fragment() {
         builder.setTitle("Registro de entrada se ha guardado exitosamente")
         builder.setMessage("Se ha guardado el registro del vehiculo.")
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            println("TEST- finish register out")
         }
         builder.show()
     }
@@ -253,8 +244,6 @@ class RecordFragment : Fragment() {
 
         val dateTime = LocalDateTime.of(year, month, day, hour, minute, seconds)
 
-        println("TEST-"+dateTimeStr)
-        println("TEST-"+dateTime)
 
         return dateTime
     }
@@ -283,12 +272,10 @@ class RecordFragment : Fragment() {
                         placas.add(register.placa)
                         registrosInGlobal.add(register)
                     }
-                    println("TEST- register:"+register)
                 }
             }
         }
 
-        //registerViewModel.allPlacasIn.observe(this, observer)
         registerViewModel.allRegisters.observe(this, observer)
     }
 
@@ -297,7 +284,6 @@ class RecordFragment : Fragment() {
             carsInGlobal.clear()
 
             for (car in cars) {
-                println("TEST- cars:"+car)
                 carsInGlobal.add(car)
             }
 
@@ -305,4 +291,5 @@ class RecordFragment : Fragment() {
         carViewModel.allCars.observe(this, observer)
 
     }
+
 }

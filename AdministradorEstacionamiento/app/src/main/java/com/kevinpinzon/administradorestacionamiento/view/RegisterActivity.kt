@@ -44,7 +44,6 @@ class RegisterActivity : AppCompatActivity() {
                     com.kevinpinzon.administradorestacionamiento.view.adapters.EstanciasRecyclerAdapter(
                         registers
                     )
-                println("TEST-register:"+registers)
             }
         }
 
