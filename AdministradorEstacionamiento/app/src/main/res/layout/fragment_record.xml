@@ -37,7 +37,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="4dp"
-                    android:src="@drawable/ic_assignment_black_24dp" />
+                    android:src="@drawable/ic_parking_barrier" />
 
                 <TextView
                     android:id="@+id/textv_registers"

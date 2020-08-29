@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
             TabLayoutMediator.TabConfigurationStrategy { tab, position ->
                 when(position){
                     0 -> {
-                        tab.text = "Registros"
-                        tab.setIcon(R.drawable.ic_parking_barrier)
+                        tab.text = "Estancias"
+                        tab.setIcon(R.drawable.ic_barrier)
                     }
                     1 -> {
                         tab.text = "Vehiculos"
-                        tab.setIcon(R.drawable.ic_automotive)
+                        tab.setIcon(R.drawable.ic_car)
                     }
                 }
             })
